@@ -4,6 +4,9 @@ out/
 *.zip
 *.bak
 
+# vendored patched attestation engine (must be tracked)
+!engine/*.zip
+
 # Rust / cargo-ndk per-target build cache (the actual ABI binaries we ship
 # live in native/*/prebuilt/ and ARE committed)
 native/**/target/

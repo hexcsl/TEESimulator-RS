@@ -1,9 +1,9 @@
 id=tricky_store
 name=AlwaysStrong
-version=v1.0.6
-versionCode=106
+version=v1.0.7
+versionCode=107
 author=Evokerr, JingMatrix, Enginex0, osm0sis, KOWX712, MashiroSann
-description=Strong Play Integrity in one drop-in module. TEESimulator-RS (MashiroSann fork) + PlayIntegrityFork, auto-refreshed. Tap Action.
-updateJson=https://raw.githubusercontent.com/MashiroSann/TEESimulator-RS/alwaysstrong/update.json
-support=https://github.com/MashiroSann/TEESimulator-RS
+description=Strong Play Integrity in one drop-in module. TEESimulator-RS (MashiroSann fork, local StrongBox op-limit patch) + PlayIntegrityFork, auto-refreshed. Tap Action.
+updateJson=https://raw.githubusercontent.com/hexcsl/TEESimulator-RS/alwaysstrong/update.json
+support=https://github.com/hexcsl/TEESimulator-RS
 banner=banner.png

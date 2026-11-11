@@ -171,6 +171,16 @@ BUILD="$ROOT/build"
 DL="$BUILD/downloads"
 OUT="$ROOT/out"
 
+# AlwaysStrong fork: use the locally patched TEESimulator-RS engine by default.
+# The patched classes.dex makes KeyMintSecurityLevelInterceptor.trackAndEnforceOpLimit()
+# return null, disabling the synthetic StrongBox 4-operation limit that breaks
+# react-native-keychain apps (e.g. Цифра Банк) at startup with
+# KeyStoreException -29 TOO_MANY_OPERATIONS.
+TEE_FILE_DEFAULT="$ROOT/engine/TEESimulator-RS-v6.0.1-367-Release-NoEnhanced-patched.zip"
+if [[ -z "$TEE_FILE" && -f "$TEE_FILE_DEFAULT" ]]; then
+    TEE_FILE="$TEE_FILE_DEFAULT"
+fi
+
 # ---------- Color helpers ----------
 red()    { printf '\033[0;31m%s\033[0m\n' "$*"; }
 green()  { printf '\033[0;32m%s\033[0m\n' "$*"; }

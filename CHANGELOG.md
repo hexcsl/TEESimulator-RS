@@ -1,5 +1,14 @@
 # AlwaysStrong changelog
 
+## v1.0.7
+
+**Engine patch** — the bundled TEESimulator-RS v6.0.1-367 engine is now the locally patched build. `KeyMintSecurityLevelInterceptor.trackAndEnforceOpLimit()` returns `null`, which disables the synthetic StrongBox 4-operation limiter. This fixes apps that perform more than four StrongBox operations at startup — notably `react-native-keychain` based banking apps such as Цифра Банк, which were hanging on their splash screen with `KeyStoreException -29 ... TOO_MANY_OPERATIONS`.
+
+- The patched engine is vendored at `engine/TEESimulator-RS-v6.0.1-367-Release-NoEnhanced-patched.zip`; `build.sh` uses it by default (`--tee-file` still overrides) and the CI packages it into all three lines.
+- The update manifests and `module.prop` now point at this fork (`hexcsl/TEESimulator-RS`) so installed modules do not pull the unpatched upstream build.
+
+**中文** — 本版内置的 TEESimulator-RS v6.0.1-367 引擎已替换为本地补丁版：`trackAndEnforceOpLimit()` 直接返回 `null`，关闭合成的 StrongBox 4 次操作限制，修复 react-native-keychain 类银行应用（如 Цифра Банк）启动时 `TOO_MANY_OPERATIONS` 卡在启动页的问题。
+
 ## v1.0.6
 
 **Fork build** — repacked around the `MashiroSann/TEESimulator-RS` engine; every script, automation loop and the WebUI still come from AlwaysStrong.
