@@ -70,9 +70,9 @@ set -euo pipefail
 # TEESimulator-RS is shared by both lines and pinned here. Each line's Play
 # Integrity engine is pinned in its own module-variants/<line>/build.conf.
 # Bump with: scripts/update-upstream.sh --apply
-TEE_REPO_DEFAULT="MashiroSann/TEESimulator-RS"
-TEE_TAG_DEFAULT="v6.0.1-367"
-TEE_ASSET_DEFAULT="TEESimulator-RS-v6.0.1-367-Release-NoEnhanced.zip"
+TEE_REPO_DEFAULT="hexcsl/TEESimulator-RS"
+TEE_TAG_DEFAULT="v6.0.1-369"
+TEE_ASSET_DEFAULT="TEESimulator-RS-v6.0.1-369-Release-NoEnhanced.zip"
 
 # TrickyStoreOSS (beakthoven) — the open-source TrickyStore keystore engine
 # (plain classes.dex + libinject.so, no obfuscated blobs). Only used when
@@ -170,16 +170,6 @@ ATTEST_SRC="$ROOT/attest"
 BUILD="$ROOT/build"
 DL="$BUILD/downloads"
 OUT="$ROOT/out"
-
-# AlwaysStrong fork: use the locally patched TEESimulator-RS engine by default.
-# The patched classes.dex makes KeyMintSecurityLevelInterceptor.trackAndEnforceOpLimit()
-# return null, disabling the synthetic StrongBox 4-operation limit that breaks
-# react-native-keychain apps (e.g. Цифра Банк) at startup with
-# KeyStoreException -29 TOO_MANY_OPERATIONS.
-TEE_FILE_DEFAULT="$ROOT/engine/TEESimulator-RS-v6.0.1-367-Release-NoEnhanced-patched.zip"
-if [[ -z "$TEE_FILE" && -f "$TEE_FILE_DEFAULT" ]]; then
-    TEE_FILE="$TEE_FILE_DEFAULT"
-fi
 
 # ---------- Color helpers ----------
 red()    { printf '\033[0;31m%s\033[0m\n' "$*"; }
