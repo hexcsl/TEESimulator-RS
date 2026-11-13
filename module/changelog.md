@@ -1,3 +1,7 @@
+## TEESimulator-RS v6.0.1-369
+
+_本次发布无上游更新。_
+
 ## TEESimulator-RS v6.0.1-367
 
 **English** — Fixed the WebUI getting stuck on its loading spinner and the Enhanced panel hanging on "Loading" when the network is unreachable (for example without a proxy).
