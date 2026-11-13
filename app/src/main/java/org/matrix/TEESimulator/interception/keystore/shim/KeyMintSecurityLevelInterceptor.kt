@@ -476,10 +476,13 @@ class KeyMintSecurityLevelInterceptor(
                 val generatedKeyInfo = resolvedEntry.value
                 val resolvedKeyId = resolvedEntry.key
 
-                trackAndEnforceOpLimit(callingUid, txId)?.let {
-                    return it
-                }
-
+                // Software keys are minted and used by our in-process TA, never by the
+                // StrongBox HAL. The synthetic four-operation StrongBox window models
+                // hardware concurrency and must not throttle TA operations; active
+                // software operations are already bounded by pruneOpsForUid(). Applying
+                // it here surfaced as KeyStoreException -29/-31 TOO_MANY_OPERATIONS in
+                // React Native keychain apps that open several AES-GCM operations during
+                // startup and left them stuck on their splash screen (see #49).
                 SystemLogger.info("[TX_ID: $txId] Creating SOFTWARE operation for uid=$callingUid.")
 
                 val params = data.createTypedArray(KeyParameter.CREATOR)!!
